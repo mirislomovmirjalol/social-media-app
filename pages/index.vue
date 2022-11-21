@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-base-100 text-base-content">
     <div class="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" class="drawer-toggle"/>
       <div class="drawer-content container mx-auto px-7">
@@ -57,7 +57,4 @@ export default {
 </script>
 
 <style>
-body {
-  background-color: #fcfcfc;
-}
 </style>
