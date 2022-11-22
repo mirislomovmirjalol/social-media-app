@@ -1,9 +1,6 @@
 export default {
   pageTransition: 'pop-up',
   // Global page headers: https://go.nuxtjs.dev/config-head
-  server: {
-    host: '0' // default: localhost
-  },
   head: {
     title: 'Social-media-app',
     meta: [
