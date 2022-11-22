@@ -1,17 +1,19 @@
 <template>
   <div class="relative">
     <div class="my-7 rounded-3xl relative flex justify-center items-center">
-      <img class="h-full w-full rounded-3xl"
-           :src="this.image">
+      <nuxt-link :to="'/post/' + this.id">
+        <img class="h-full w-full rounded-3xl" :src="this.image">
+      </nuxt-link>
 
-      <div class="left-4 top-4 absolute backdrop-blur-sm backdrop-brightness-90 rounded-xl border border-white">
+      <div class=" left-4 top-4 absolute backdrop-blur-sm backdrop-brightness-90 rounded-xl border border-white
+        ">
         <a href="#" class="flex items-center p-1.5 px-3">
           <img
             src="https://images.unsplash.com/photo-1602308939005-f05763be8771?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cGVyc29ufGVufDB8MnwwfHB1cnBsZXw%3D&auto=format&fit=crop&w=800&q=60"
             class="mr-2 w-8 h-8 rounded-full border border-white">
 
           <div class="text-gray-600 font-bold text-sm text-gray-50 hover:underline">
-            Just_User
+            {{ this.author }}
           </div>
         </a>
       </div>
@@ -31,7 +33,7 @@
             <path stroke-linecap="round" stroke-linejoin="round"
                   d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
           </svg>
-          <h5 class="text-xs">23K</h5>
+          <h5 class="text-xs">{{ this.likes }}</h5>
         </button>
         <button
           class="flex flex-col justify-between items-center text-gray-600 font-light text-lg text-gray-50 px-5 mx-1">
@@ -73,7 +75,7 @@
 export default {
   name: "Post-card",
   props: [
-    'id', 'image', 'like'
+    'id', 'image', 'like', 'author', 'likes'
   ],
 
   data() {
@@ -85,9 +87,11 @@ export default {
     changeLike() {
       if (this.like === 0) {
         this.like = 1
+        this.likes++
         this.likeActive = true
         setTimeout(() => this.likeActive = false, 1000);
       } else {
+        this.likes--
         this.like = 0
       }
     }

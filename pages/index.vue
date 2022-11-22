@@ -8,10 +8,10 @@
         <hr class="w-4/5 mx-auto">
 
         <div class="lg:max-w-md mx-auto">
-          <PostCard v-for="post in posts" :id="post.id" :key="post.id" :image="post.image" :like="post.like"/>
+          <lazy-post-card v-for="post in posts" :key="post.id" :id="post.id" :image="post.image" :like="post.like"
+                          :likes="post.likes"
+                          :author="post.author"/>
         </div>
-
-        <bottom-nav/>
 
       </div>
 
@@ -32,29 +32,23 @@
 <script>
 export default {
   name: 'IndexPage',
-  data() {
-    return {
-      posts: [
-        {
-          id: 0,
-          like: 1,
-          image: 'https://images.unsplash.com/photo-1664575600850-c4b712e6e2bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8MXwwfGJsYWNrfA%3D%3D&auto=format&fit=crop&w=800&q=60',
-        },
-        {
-          id: 1,
-          like: 0,
-          image: 'https://images.unsplash.com/photo-1567788150222-c580695fa1d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bmF0dXJlfGVufDB8MXwwfHdoaXRlfA%3D%3D&auto=format&fit=crop&w=800&q=60',
-        },
-        {
-          id: 2,
-          like: 0,
-          image: 'https://images.unsplash.com/photo-1614375516536-ee3b08717d3b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBlcnNvbnxlbnwwfDF8MHxibGFja3w%3D&auto=format&fit=crop&w=800&q=60',
-        },
-      ]
+  computed: {
+    posts() {
+      return this.$store.state.posts;
     }
   }
 }
 </script>
 
 <style>
+.pop-up-enter-active,
+.pop-up-leave-active {
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+
+.pop-up-enter,
+.pop-up-leave-to {
+  opacity: 0;
+  transform: translate3d(0, 15px, 0);
+}
 </style>
