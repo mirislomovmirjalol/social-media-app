@@ -1,6 +1,9 @@
 export default {
   pageTransition: 'pop-up',
   // Global page headers: https://go.nuxtjs.dev/config-head
+  server: {
+    host: '0' // default: localhost
+  },
   head: {
     title: 'Social-media-app',
     meta: [
@@ -35,6 +38,21 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    ['@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: "AIzaSyCIiqxACMRXBctYc-DiLBPa1YoSw3AzoqE",
+          authDomain: "social-media-app-df768.firebaseapp.com",
+          projectId: "social-media-app-df768",
+          storageBucket: "social-media-app-df768.appspot.com",
+          messagingSenderId: "9028999388",
+          appId: "1:9028999388:web:1bd06facc508f9dd03fc19",
+          measurementId: "G-8Z061CG20Q"
+        },
+        services: {
+          auth: true // Just as example. Can be any other service.
+        }
+      },]
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -51,5 +69,7 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: {
+    // extractCSS: true,
+  },
 }

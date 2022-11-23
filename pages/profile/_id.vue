@@ -17,7 +17,10 @@
           <hr class="w-4/5 mx-auto">
 
           <div class="font-light text-lg my-4">
-            <image-gallery :posts="posts"/>
+            <transition name="fade" mode="out-in">
+              <image-gallery-skeleton v-if="this.loading"/>
+              <image-gallery v-else :posts="posts"/>
+            </transition>
           </div>
         </div>
 
@@ -45,6 +48,21 @@ export default {
     },
     posts() {
       return this.$store.state.posts;
+    },
+  },
+
+  data() {
+    return {
+      loading: true
+    }
+  },
+  mounted() {
+    this.stopLoading()
+  },
+  methods: {
+    //after 1.5 seconds loading will stop
+    stopLoading() {
+      setTimeout(() => this.loading = false, 1500);
     }
   },
 }

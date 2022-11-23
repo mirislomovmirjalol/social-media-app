@@ -8,9 +8,15 @@
         <hr class="w-4/5 mx-auto">
 
         <div class="lg:max-w-md mx-auto">
-          <lazy-post-card v-for="post in posts" :key="post.id" :id="post.id" :image="post.image" :like="post.like"
-                          :likes="post.likes"
-                          :author="post.author"/>
+          <transition name="fade" mode="out-in">
+            <post-card-skeleton v-if="loading"/>
+            <div v-else>
+              <post-card v-for="post in posts" :key="post.id" :id="post.id" :image="post.image"
+                         :like="post.like"
+                         :likes="post.likes"
+                         :author="post.author"/>
+            </div>
+          </transition>
         </div>
 
       </div>
@@ -36,11 +42,34 @@ export default {
     posts() {
       return this.$store.state.posts;
     }
-  }
+  },
+  data() {
+    return {
+      loading: true
+    }
+  },
+  mounted() {
+    this.stopLoading()
+  },
+  methods: {
+    //after 1.5 seconds loading will stop
+    stopLoading() {
+      setTimeout(() => this.loading = false, 1500);
+    }
+  },
 }
 </script>
 
 <style>
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
+
 .pop-up-enter-active,
 .pop-up-leave-active {
   transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
