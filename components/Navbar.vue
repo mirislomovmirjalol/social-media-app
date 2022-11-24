@@ -15,7 +15,7 @@
     </div>
 
     <div class="flex justify-between items-center">
-      <div class="indicator">
+      <div class="">
         <button class="text-2xl no-underline text-grey-darkest hover:text-blue-dark mx-1 p-2 border rounded-full">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                stroke="currentColor"
